@@ -1,0 +1,72 @@
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+button {
+  padding: 10px 16px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+.error {
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #fde8e8;
+  color: #a40000;
+  border-radius: 4px;
+}
+
+.success {
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #e6f6e9;
+  color: #176b2c;
+  border-radius: 4px;
+}

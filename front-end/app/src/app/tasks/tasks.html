@@ -1,0 +1,75 @@
+<div class="container">
+  <h2>Task Manager</h2>
+
+  <!-- Error message -->
+   @if (errorMessage) {
+  <div class="error">
+    {{ errorMessage }}
+    <button type="button"
+            (click)="errorMessage = ''">
+      Dismiss
+    </button>
+  </div>
+  }
+
+  <!-- Success message -->
+  @if (successMessage) {
+  <div class="success">
+    {{ successMessage }}
+  </div>
+  }
+
+  <!-- Create task form -->
+  <form (ngSubmit)="addTask()">
+    <div>
+      <label for="title">Title</label>
+      <input
+        id="title"
+        type="text"
+        name="title"
+        [(ngModel)]="title"
+        required
+        maxlength="150"
+        placeholder="Enter task title">
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="description"
+        required
+        maxlength="1000"
+        placeholder="Enter task description">
+      </textarea>
+    </div>
+
+    <button type="submit" [disabled]="saving">
+      {{ saving ? 'Saving...' : 'Submit' }}
+    </button>
+  </form>
+
+  <hr>
+
+  <h3>All Tasks</h3>
+
+  <p *ngIf="loading">Loading tasks...</p>
+<p *ngIf="successMessage">{{ successMessage }}</p>
+<p *ngIf="errorMessage">{{ errorMessage }}</p>
+
+<table *ngIf="!loading && tasks.length > 0">
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.id }}</td>
+      <td>{{ task.title }}</td>
+      <td>{{ task.description }}</td>
+      <td>{{ task.createdOn }}</td>
+    </tr>
+  </tbody>
+</table>
+  
+<p *ngIf="!loading && tasks.length === 0">
+  No tasks found.
+</p>
+</div>
