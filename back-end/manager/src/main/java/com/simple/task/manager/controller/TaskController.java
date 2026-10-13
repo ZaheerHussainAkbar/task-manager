@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/manager/api")
 @Slf4j
@@ -37,7 +38,7 @@ public class TaskController {
         } else {
             status = HttpStatus.BAD_REQUEST;
         }
-        return new ResponseEntity<>(taskResponse, status);
+        return ResponseEntity.status(status).body(taskResponse);
     }
 
     @GetMapping("/tasks")
@@ -46,12 +47,12 @@ public class TaskController {
         logger.debug("Fetch Task list");
         List<TaskDto> taskDtoListResponse = taskServiceInf.getTaskList();
         HttpStatusCode status = null;
-        if (Objects.nonNull(taskDtoListResponse)) {
-            status = HttpStatus.FOUND;
-        } else {
-            status = HttpStatus.NOT_FOUND;
+        if (taskDtoListResponse == null || taskDtoListResponse.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(taskDtoListResponse);
         }
-        return new ResponseEntity<>(taskDtoListResponse, status);
+        return ResponseEntity.ok(taskDtoListResponse);
     }
 
 }
